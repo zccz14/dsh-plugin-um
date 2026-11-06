@@ -112,6 +112,9 @@ test('client module registers the main panel and sidebar entry', async () => {
   assert.equal(sidebar.definition.id, 'ultimate-machines');
   assert.equal(sidebar.definition.order, 30);
   assert.equal(style.textContent.includes('.um-page'), true);
+  assert.equal(style.textContent.includes('--dsw-alias-bg-mask-1'), true);
+  assert.equal(style.textContent.includes('backdrop-filter:blur(10px)'), true);
+  assert.equal(style.textContent.includes('.um-dialog-head:before'), true);
   assert.equal(style.removed, undefined);
   for (const cleanup of effects) {
     if (typeof cleanup === 'function') cleanup();

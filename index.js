@@ -816,7 +816,7 @@ export function apply(ctx, config = {}) {
           try {
             await ready;
             if (action === 'health') {
-              return json({ ok: true, value: { name: NS, version: '0.1.1' } });
+              return json({ ok: true, value: { name: NS, version: '0.1.2' } });
             }
             if (action === 'list') {
               return json({ ok: true, value: await listMachines({ enabled: body.enabled, limit: body.limit }) });
