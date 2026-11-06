@@ -55,5 +55,13 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zccz14/dsh-plugin-um.git"
+  },
+  "homepage": "https://github.com/zccz14/dsh-plugin-um#readme",
+  "bugs": {
+    "url": "https://github.com/zccz14/dsh-plugin-um/issues"
   }
 }
