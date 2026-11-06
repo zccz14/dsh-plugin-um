@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-um",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Token-free scheduled shell checks with agent repair sessions for DeepSeek Harness.",
   "type": "module",
   "license": "MIT",
