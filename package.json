@@ -1,0 +1,59 @@
+{
+  "name": "dsh-plugin-um",
+  "version": "0.1.0",
+  "description": "Token-free scheduled shell checks with agent repair sessions for DeepSeek Harness.",
+  "type": "module",
+  "license": "MIT",
+  "author": "cz",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "ultimate-machine",
+    "token-free",
+    "automation",
+    "scheduler",
+    "self-check"
+  ],
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib/*.js",
+    "locale/*.json",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "node --check index.js && node --check client.js && node --check lib/core.js && node --check lib/store.js && node --check lib/runner.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-workspace"
+      ]
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
