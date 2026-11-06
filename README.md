@@ -1,5 +1,8 @@
 # dsh-plugin-um · 终极机器
 
+[![CI](https://github.com/zccz14/dsh-plugin-um/actions/workflows/ci.yml/badge.svg)](https://github.com/zccz14/dsh-plugin-um/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/dsh-plugin-um.svg)](https://www.npmjs.com/package/dsh-plugin-um)
+
 > **Token-Free 的自动化任务，给 DeepSeek Harness 用。**
 > 一台机器 = 一条 shell 检查命令 + 一个运行间隔。健康时它什么都不做，也不消耗任何 token；失败时，它把修复请求投递到自己的修复会话里。
 
@@ -183,6 +186,29 @@ test $(df -Pk / | awk 'NR==2 {print $5}' | tr -d %) -lt 90
         # 每台机器保留的运行条数（5-200）
         maxRunsPerMachine: 50
 ```
+
+---
+
+## 发布（GitHub OIDC / Trusted Publishing）
+
+发布走 GitHub Actions + npm Trusted Publishing，**不在仓库里保存 npm token**：
+
+- 仓库：[`zccz14/dsh-plugin-um`](https://github.com/zccz14/dsh-plugin-um)（public）
+- 工作流：[`.github/workflows/publish.yml`](.github/workflows/publish.yml)
+- npm Trusted Publisher：GitHub owner `zccz14`、repo `dsh-plugin-um`、workflow `publish.yml`，允许 publish。
+- 工作流权限：`contents: read` + `id-token: write`；发布命令为 `npm publish --access public --provenance`。
+- npm 首次发布或新版本可能进入 staged processing，页面显示 `Your package is being processed` 后需要几分钟才在 registry 可见。
+
+发布新版本：
+
+```bash
+npm version patch --no-git-tag-version   # 或手动改 package.json
+git add -A && git commit -m "chore: release x.y.z"
+git push
+gh workflow run publish.yml --repo zccz14/dsh-plugin-um
+```
+
+也可以创建 GitHub Release；`release: published` 会触发同一个工作流。
 
 ---
 
